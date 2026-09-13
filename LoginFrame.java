@@ -26,6 +26,7 @@ public class LoginFrame extends JFrame {
         setSize(480, 560);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
+        setIconImages(loadIcons());
         getContentPane().setBackground(BG_COLOR);
 
         JPanel titlePanel = new JPanel();
@@ -174,6 +175,22 @@ public class LoginFrame extends JFrame {
         if (!USERS.get(u).equals(p)) { messageLabel.setText("密码错误"); return; }
         dispose();
         SwingUtilities.invokeLater(() -> new PuzzleGame(u).setVisible(true));
+    }
+
+    /** Load multi-size window/taskbar icons from jar classpath. */
+    static java.util.List<java.awt.Image> loadIcons() {
+        java.util.List<java.awt.Image> icons = new java.util.ArrayList<>();
+        String[] resources = {
+                "/assets/icon-16.png", "/assets/icon-32.png",
+                "/assets/icon-64.png", "/assets/icon-256.png"
+        };
+        for (String res : resources) {
+            java.net.URL url = LoginFrame.class.getResource(res);
+            if (url != null) {
+                icons.add(new ImageIcon(url).getImage());
+            }
+        }
+        return icons;
     }
 
     private JLabel label(String text) {

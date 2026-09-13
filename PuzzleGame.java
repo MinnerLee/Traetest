@@ -1,9 +1,9 @@
-import javax.swing.*;
-import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import javax.swing.*;
+import javax.swing.border.EmptyBorder;
 
 /**
  * 数字滑动拼图（带登录态 + 难度选择 + 圆角美化）
@@ -43,6 +43,7 @@ public class PuzzleGame extends JFrame {
         setSize(540, 640);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
+        setIconImages(LoginFrame.loadIcons());
         getContentPane().setBackground(BG_COLOR);
 
         JPanel topPanel = new JPanel(new BorderLayout());

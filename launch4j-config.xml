@@ -3,6 +3,7 @@
   <headerType>gui</headerType>
   <jar>D:\Traetest\PuzzleGame.jar</jar>
   <outfile>D:\Traetest\dist\PuzzleGame.exe</outfile>
+  <icon>D:\Traetest\assets\icon.ico</icon>
   <classPath>
     <mainClass>LoginFrame</mainClass>
   </classPath>

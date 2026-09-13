@@ -11,7 +11,7 @@ javac *.java
 if errorlevel 1 ( echo BUILD FAILED: javac & pause & exit /b 1 )
 
 echo [2/3] jar...
-jar cfe PuzzleGame.jar LoginFrame *.class
+jar cfe PuzzleGame.jar LoginFrame *.class assets
 
 if not exist dist mkdir dist
 
