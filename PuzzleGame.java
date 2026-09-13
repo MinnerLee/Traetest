@@ -86,6 +86,12 @@ public class PuzzleGame extends JFrame {
         hardBtn.setForeground(new Color(60, 80, 110));
         hardBtn.addActionListener(e -> switchSize(4));
 
+        RoundedButton expertBtn = new RoundedButton("困难 5×5",
+                new Color(200, 220, 240), new Color(215, 230, 250), new Color(180, 200, 220));
+        expertBtn.setFont(new Font("微软雅黑", Font.PLAIN, 12));
+        expertBtn.setForeground(new Color(60, 80, 110));
+        expertBtn.addActionListener(e -> switchSize(5));
+
         RoundedButton restartBtn = new RoundedButton("重新开始", TILE_BG, TILE_HOVER, TILE_PRESS);
         restartBtn.setForeground(Color.WHITE);
         restartBtn.setFont(new Font("微软雅黑", Font.BOLD, 13));
@@ -93,6 +99,7 @@ public class PuzzleGame extends JFrame {
 
         btnPanel.add(easyBtn);
         btnPanel.add(hardBtn);
+        btnPanel.add(expertBtn);
         btnPanel.add(restartBtn);
 
         topPanel.add(leftInfo, BorderLayout.CENTER);
@@ -103,14 +110,15 @@ public class PuzzleGame extends JFrame {
         gridOuter.setBackground(BG_COLOR);
         gridOuter.setBorder(new EmptyBorder(10, 30, 20, 30));
 
-        int cellSize = size == 3 ? 120 : 90;
+        int cellSize = size == 3 ? 120 : (size == 4 ? 90 : 72);
         buttons = new RoundedButton[total];
         JPanel gridPanel = new JPanel(new GridLayout(size, size, 6, 6));
         gridPanel.setBackground(BG_COLOR);
+        int fontSize = size == 3 ? 44 : (size == 4 ? 32 : 26);
         for (int i = 0; i < total; i++) {
             RoundedButton b = new RoundedButton("", TILE_BG, TILE_HOVER, TILE_PRESS);
             b.setForeground(Color.WHITE);
-            b.setFont(new Font("微软雅黑", Font.BOLD, size == 3 ? 44 : 32));
+            b.setFont(new Font("微软雅黑", Font.BOLD, fontSize));
             b.setFocusable(false);
             b.setPreferredSize(new Dimension(cellSize, cellSize));
             final int idx = i;
@@ -131,15 +139,16 @@ public class PuzzleGame extends JFrame {
     }
 
     /**
-     * 打乱：从已解状态执行 15~20 次随机合法移动
-     * 好处：100% 有解，且打乱程度可控（难度低）
+     * 打乱：从已解状态执行若干次随机合法移动
+     * 好处：100% 有解，打乱步数随网格规模增加
      */
     private void shuffleBoard() {
         for (int i = 0; i < total - 1; i++) board[i] = i + 1;
         board[total - 1] = EMPTY;
 
         Random rand = new Random();
-        int moves = 15 + rand.nextInt(6);
+        int base = size * 5;
+        int moves = base + rand.nextInt(base / 3 + 1);
         for (int m = 0; m < moves; m++) {
             int emptyIdx = findEmpty();
             List<Integer> neighbors = neighborsOf(emptyIdx);
