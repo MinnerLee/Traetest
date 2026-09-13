@@ -12,6 +12,9 @@ tools/
 dist/
 *.log
 
+# 本机一次性 GitHub 登录脚本
+login-github.bat
+
 # 编辑器配置
 .idea/
 .vscode/
