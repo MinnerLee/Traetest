@@ -1,0 +1,15 @@
+<launch4jConfig>
+  <dontWrapJar>false</dontWrapJar>
+  <headerType>gui</headerType>
+  <jar>D:\Traetest\PuzzleGame.jar</jar>
+  <outfile>D:\Traetest\dist\PuzzleGame.exe</outfile>
+  <classPath>
+    <mainClass>LoginFrame</mainClass>
+  </classPath>
+  <jre>
+    <minVersion>1.8.0</minVersion>
+    <jdkPreference>preferJre</jdkPreference>
+    <initialHeapSize>128</initialHeapSize>
+    <maxHeapSize>512</maxHeapSize>
+  </jre>
+</launch4jConfig>

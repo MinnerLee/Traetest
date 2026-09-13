@@ -7,6 +7,11 @@ target/
 build/
 out/
 
+# Launch4j 工具目录与打包产物
+tools/
+dist/
+*.log
+
 # 编辑器配置
 .idea/
 .vscode/
