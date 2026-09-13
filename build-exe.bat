@@ -7,7 +7,7 @@ echo   PuzzleGame EXE Build
 echo ========================================
 
 echo [1/3] javac...
-javac *.java
+javac -encoding UTF-8 *.java
 if errorlevel 1 ( echo BUILD FAILED: javac & pause & exit /b 1 )
 
 echo [2/3] jar...
